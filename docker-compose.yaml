@@ -1,0 +1,13 @@
+version: "3.6"
+services:
+  pocketbase:
+    container_name: 'pb-deployable'
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    ports: 
+      - 8090:8090
+    env_file:
+      - .env
+    volumes:
+      - ./:/usr/src/app
