@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	_ "pocketbase-deployable/migrations"
 	"strings"
 
 	"github.com/pocketbase/pocketbase"
