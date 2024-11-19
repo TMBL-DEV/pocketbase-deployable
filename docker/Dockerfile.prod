@@ -1,5 +1,5 @@
-# Step 1: Build the application
-FROM golang:1.23.3-alpine3.20 as base
+# Use the golang image as both the builder and runtime environment
+FROM golang:1.23.3-alpine3.20 as builder
 
 RUN apk add --no-cache curl wget
 
@@ -11,18 +11,6 @@ RUN go mod vendor
 
 # Build the pocketbase binary
 RUN go build -o /usr/local/bin/pocketbase
-
-# Step 2: Final image (runtime)
-FROM alpine:3.20
-
-WORKDIR /usr/src/app
-
-# Copy the pocketbase binary from the build stage
-COPY --from=base /usr/local/bin/pocketbase /usr/local/bin/pocketbase
-
-# You can mount the volume for vendor directory if needed
-VOLUME /usr/src/app/vendor
-VOLUME /usr/src/app/pb_data
 
 # Define the command to run pocketbase
 CMD ["/usr/local/bin/pocketbase", "serve", "--http=0.0.0.0:8090"]
