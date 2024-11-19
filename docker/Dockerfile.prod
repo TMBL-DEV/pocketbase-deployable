@@ -22,6 +22,7 @@ COPY --from=base /usr/local/bin/pocketbase /usr/local/bin/pocketbase
 
 # You can mount the volume for vendor directory if needed
 VOLUME /usr/src/app/vendor
+VOLUME /usr/src/app/pb_data
 
 # Define the command to run pocketbase
 CMD ["/usr/local/bin/pocketbase", "serve", "--http=0.0.0.0:8090"]
