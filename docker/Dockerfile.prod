@@ -24,4 +24,4 @@ COPY --from=base /usr/local/bin/pocketbase /usr/local/bin/pocketbase
 VOLUME /usr/src/app/vendor
 
 # Define the command to run pocketbase
-CMD ["/usr/local/bin/pocketbase", "serve"]
+CMD ["/usr/local/bin/pocketbase", "serve", "--http=0.0.0.0:8090"]
