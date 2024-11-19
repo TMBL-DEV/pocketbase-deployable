@@ -10,4 +10,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./:/usr/src/app
+      - ./:/usr/src/app/
+      - vendor:/usr/src/app/vendor
+
+volumes:
+  vendor: {} 
